@@ -494,6 +494,7 @@ class AliAnalysisTaskGammaCalo : public AliAnalysisTaskSE {
     Bool_t                fAllowOverlapHeaders;                                 // enable overlapping headers for cluster selection
     Int_t                 fNCurrentClusterBasic;                                // current number of cluster without minE
     Int_t                 fTrackMatcherRunningMode;                             // CaloTrackMatcher running mode
+    Int_t                 CurrentEventNumber;                                   // Number of UserExec() calls
   private:
     AliAnalysisTaskGammaCalo(const AliAnalysisTaskGammaCalo&);                  // Prevent copy-construction
     AliAnalysisTaskGammaCalo &operator=(const AliAnalysisTaskGammaCalo&);       // Prevent assignment

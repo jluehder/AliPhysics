@@ -473,6 +473,7 @@ class AliAnalysisTaskGammaConvCalo : public AliAnalysisTaskSE {
     TObjString*             fFileNameBroken;                                    // string object for broken file name
     Bool_t                  fAllowOverlapHeaders;                               // enable overlapping headers for cluster selection
     Int_t                   fTrackMatcherRunningMode;                           // CaloTrackMatcher running mode
+    Int_t                   CurrentEventNumber;                                 // Number of UserExec() calls
 
   private:
     AliAnalysisTaskGammaConvCalo(const AliAnalysisTaskGammaConvCalo&); // Prevent copy-construction

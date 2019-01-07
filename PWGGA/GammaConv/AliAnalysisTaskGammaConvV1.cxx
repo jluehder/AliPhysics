@@ -56,6 +56,7 @@
 #include "AliAODEvent.h"
 #include <vector>
 #include <map>
+#include "TObjectTable.h"
 
 
 ClassImp(AliAnalysisTaskGammaConvV1)
@@ -1831,6 +1832,14 @@ Bool_t AliAnalysisTaskGammaConvV1::Notify()
 //_____________________________________________________________________________
 void AliAnalysisTaskGammaConvV1::UserExec(Option_t *)
 {
+  if ( (CurrentEventNumber%1000)==0 ){
+      FILE *DebugFileLeak;
+      DebugFileLeak = freopen("DebugFileLog_GammaConvV1.txt", "a", stdout);
+      cout<<"CurrentEventNumber: "<<CurrentEventNumber<<endl;
+      gObjectTable->Print();
+      fclose(DebugFileLeak);
+  }
+  CurrentEventNumber++;
   //
   // Called for each event
   //

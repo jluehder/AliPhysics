@@ -305,6 +305,7 @@ class AliAnalysisTaskGammaConvV1 : public AliAnalysisTaskSE {
     Bool_t                            fDoMaterialBudgetWeightingOfGammasForTrueMesons;
     TTree*                            tBrokenFiles;                               // tree for keeping track of broken files
     TObjString*                       fFileNameBroken;                            // string object for broken file name
+    Int_t                             CurrentEventNumber;                         // Number of UserExec() calls
 
   private:
 

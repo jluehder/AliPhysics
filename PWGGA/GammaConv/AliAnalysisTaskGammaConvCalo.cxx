@@ -58,6 +58,7 @@
 #include "AliCaloTrackMatcher.h"
 #include <vector>
 #include <map>
+#include "TObjectTable.h"
 
 ClassImp(AliAnalysisTaskGammaConvCalo)
 
@@ -354,7 +355,9 @@ AliAnalysisTaskGammaConvCalo::AliAnalysisTaskGammaConvCalo(): AliAnalysisTaskSE(
   tBrokenFiles(NULL),
   fFileNameBroken(NULL),
   fAllowOverlapHeaders(kTRUE),
-  fTrackMatcherRunningMode(0)
+  fTrackMatcherRunningMode(0),
+  CurrentEventNumber(0)
+
 {
 
 }
@@ -653,7 +656,8 @@ AliAnalysisTaskGammaConvCalo::AliAnalysisTaskGammaConvCalo(const char *name):
   tBrokenFiles(NULL),
   fFileNameBroken(NULL),
   fAllowOverlapHeaders(kTRUE),
-  fTrackMatcherRunningMode(0)
+  fTrackMatcherRunningMode(0),
+  CurrentEventNumber(0)
 {
   // Define output slots here
   DefineOutput(1, TList::Class());
@@ -2538,6 +2542,14 @@ Bool_t AliAnalysisTaskGammaConvCalo::Notify()
 //_____________________________________________________________________________
 void AliAnalysisTaskGammaConvCalo::UserExec(Option_t *)
 {
+    if ( (CurrentEventNumber%1000)==0 ){
+        FILE *DebugFileLeak;
+        DebugFileLeak = freopen("DebugFileLog_GammaConvCalo.txt", "a", stdout);
+        cout<<"CurrentEventNumber: "<<CurrentEventNumber<<endl;
+        gObjectTable->Print();
+        fclose(DebugFileLeak);
+    }
+    CurrentEventNumber++;
   //
   // Called for each event
   //
