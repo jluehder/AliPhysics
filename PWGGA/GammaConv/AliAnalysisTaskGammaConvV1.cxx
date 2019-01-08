@@ -1832,7 +1832,7 @@ Bool_t AliAnalysisTaskGammaConvV1::Notify()
 //_____________________________________________________________________________
 void AliAnalysisTaskGammaConvV1::UserExec(Option_t *)
 {
-  if ( (CurrentEventNumber%1000)==0 ){
+  if ( ((CurrentEventNumber%1000)==0)||((CurrentEventNumber>=55000)&&((CurrentEventNumber%100)==0)) ){
       FILE *DebugFileLeak;
       DebugFileLeak = freopen("DebugFileLog_GammaConvV1.txt", "a", stdout);
       cout<<"CurrentEventNumber: "<<CurrentEventNumber<<endl;

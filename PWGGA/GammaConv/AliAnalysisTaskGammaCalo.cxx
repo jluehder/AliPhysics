@@ -2875,7 +2875,7 @@ Bool_t AliAnalysisTaskGammaCalo::Notify()
 //_____________________________________________________________________________
 void AliAnalysisTaskGammaCalo::UserExec(Option_t *)
 {
-  if ( (CurrentEventNumber%1000)==0 ){
+  if ( ((CurrentEventNumber%1000)==0)||((CurrentEventNumber>=55000)&&((CurrentEventNumber%100)==0)) ){
       FILE *DebugFileLeak;
       DebugFileLeak = freopen("DebugFileLog_GammaCalo.txt", "a", stdout);
       cout<<"CurrentEventNumber: "<<CurrentEventNumber<<endl;
