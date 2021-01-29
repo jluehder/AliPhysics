@@ -6289,7 +6289,6 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   Bool_t isSameMotherPiPlNDM       = kFALSE;   // pi+ and pi0 have the same mother
   Bool_t isSameMotherPiMiNDM       = kFALSE;   // pi- and pi0 have the same mother
   Bool_t isNoSameMother            = kFALSE;   // none of the pions have the same mother
-  Bool_t isNoPiPiPi                = kFALSE;   // the decay is not a 3 pion decay
 
   Bool_t areAllPionsCorrectlyIdentified     = kFALSE;   // All Pion Identifications correct
   Bool_t isPiPlWronglyIdentified            = kFALSE;   // Pi+ Identification not correct
@@ -6367,7 +6366,6 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   } else{
     // not a three pion decay, Contamination
     isContaminationMeson        = kTRUE;
-    isNoPiPiPi = kTRUE;
     if (!(TMath::Abs(negativeMC->GetPdgCode())==211)){
         isPiMiWronglyIdentified     = kTRUE;
     }
@@ -6530,7 +6528,7 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   } else if (isContaminationMeson) {
     // no pi pi pi decay contamination
     fHistoTruePiPlPiMiNDMContaminationInvMassPt[fiCut]->Fill(mesoncand->M(),mesoncand->Pt(),weighted);
-    if(isNoPiPiPi  &&  (fDoMesonQA>0 ) && (!fDoLightOutput)){
+    if((fDoMesonQA>0 ) && (!fDoLightOutput)){
       if (!isMultipleWronglyIdentified){
         if (isPiPlWronglyIdentified){
           fHistoTruePiPlPiMiNDMContamination_PiPl_InvMassPt[fiCut]->Fill(mesoncand->M(),mesoncand->Pt(),weighted);
@@ -6559,7 +6557,6 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   Bool_t isSameMotherPiPlNDM       = kFALSE;   // pi+ and pi0 have the same mother
   Bool_t isSameMotherPiMiNDM       = kFALSE;   // pi- and pi0 have the same mother
   Bool_t isNoSameMother            = kFALSE;   // none of the pions have the same mother
-  Bool_t isNoPiPiPi                = kFALSE;   // the decay is not a 3 pion decay
 
   Bool_t areAllPionsCorrectlyIdentified     = kFALSE;   // All Pion Identifications correct
   Bool_t isPiPlWronglyIdentified            = kFALSE;   // Pi+ Identification not correct
@@ -6645,7 +6642,6 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   } else{
     // not a three pion decay, Contamination
     isContaminationMeson = kTRUE;
-    isNoPiPiPi = kTRUE;
     if (!(TMath::Abs(negativeMC->GetPdgCode())==211)){
         isPiMiWronglyIdentified     = kTRUE;
     }
