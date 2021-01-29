@@ -352,6 +352,7 @@ class AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson: public AliAnalysisTaskS
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromK0s;         //!<! histos with reconstructed validated K0s mesons from  which are not analyzed, inv mass, pT
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromK0l;         //!<! histos with reconstructed validated K0l mesons from  which are not analyzed, inv mass, pT
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromEtaPrime;    //!<! histos with reconstructed validated EtaPrime mesons from  which are not analyzed, inv mass, pT
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromOther;       //!<! histos with reconstructed validated EtaPrime mesons from  which are not analyzed, inv mass, pT
     //Dalitz All Pt
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMDalitzPlotPosFixedPzNDM;   //!<!
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMDalitzPlotNegFixedPzNDM;   //!<!
@@ -393,16 +394,20 @@ class AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson: public AliAnalysisTaskS
     TH2F**                          fHistoTruePiPlPiMiSameMotherFromEtaPrimeInvMassPt;    //!<! histos with reconstructed validated pi+ pi-  from etaprime, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiMiSameMotherFromK0sInvMassPt;         //!<! histos with reconstructed validated pi+ pi-  from K0s, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiMiSameMotherFromK0lInvMassPt;         //!<! histos with reconstructed validated pi+ pi-  from K0s, invariant mass, pT
+    TH2F**                          fHistoTruePiPlPiMiSameMotherFromOtherlInvMassPt;         //!<! histos with reconstructed validated pi+ pi-  from K0s, invariant mass, pT
 
     TH2F**                          fHistoTruePiMiPiZeroSameMotherFromEtaInvMassPt;       //!<! histos with reconstructed validated pi0 pi-  from omega, invariant mass, pT
     TH2F**                          fHistoTruePiMiPiZeroSameMotherFromOmegaInvMassPt;     //!<! histos with reconstructed validated pi0 pi-  from eta, invariant mass, pT
     TH2F**                          fHistoTruePiMiPiZeroSameMotherFromRhoInvMassPt;       //!<! histos with reconstructed validated pi0 pi-  from rho0, invariant mass, pT
     TH2F**                          fHistoTruePiMiPiZeroSameMotherFromK0lInvMassPt;       //!<! histos with reconstructed validated pi0 pi-  from rho0, invariant mass, pT
+    TH2F**                          fHistoTruePiMiPiZeroSameMotherFromOtherlInvMassPt;    //!<! histos with reconstructed validated pi0 pi-  from rho0, invariant mass, pT
 
     TH2F**                          fHistoTruePiPlPiZeroSameMotherFromEtaInvMassPt;       //!<! histos with reconstructed validated pi0 pi+  from omega, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiZeroSameMotherFromOmegaInvMassPt;     //!<! histos with reconstructed validated pi0 pi+  from eta, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiZeroSameMotherFromRhoInvMassPt;       //!<! histos with reconstructed validated pi0 pi+  from rho0, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiZeroSameMotherFromK0lInvMassPt;       //!<! histos with reconstructed validated pi0 pi+  from K0l, invariant mass, pT
+    TH2F**                          fHistoTruePiPlPiZeroSameMotherFromOtherInvMassPt;       //!<! histos with reconstructed validated pi0 pi+  from K0l, invariant mass, pT
+
     TH2F**                          fHistoTruePiPlPiMiNDMPureCombinatoricalInvMassPt;     //!<! histos with reconstructed validated pi+pi-pi0 that are pure combinatorical (do not share a mother)
     TH2F**                          fHistoTruePiPlPiMiNDMCombinatoricalInvMassPt;         //!<! histos with all reconstructed validated pi+pi-pi0 that are combinatorical
 
