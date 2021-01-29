@@ -234,6 +234,7 @@ AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::AliAnalysisTaskNeutralMesonTo
   fHistMCReconstructibleNDMPtHeavyPt(nullptr),
   fHistMCReconstructiblePiPlusPtHeavyPt(nullptr),
   fHistMCReconstructiblePiMinusPtHeavyPt(nullptr),
+  fHistoTrueMesonFlags(nullptr),
   fHistoTrueMotherPiPlPiMiNDMInvMassPt(nullptr),
   fHistoTrueMotherPiPlPiMiNDMInvMassPtSubNDM(nullptr),
   fHistoTrueMotherPiPlPiMiNDMInvMassPtFixedPzNDM(nullptr),
@@ -301,7 +302,6 @@ AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::AliAnalysisTaskNeutralMesonTo
   fVectorDoubleCountTrueHNMs(0),
   fVectorDoubleCountTrueConvGammas(0),
   fHistoNEvents(nullptr),
-  fHistoTrueMesonFlags(nullptr),
   fHistoNEventsWOWeight(nullptr),
   fProfileJetJetXSection(nullptr),
   fHistoJetJetNTrials(nullptr),
@@ -527,6 +527,7 @@ AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::AliAnalysisTaskNeutralMesonTo
   fHistMCReconstructibleNDMPtHeavyPt(nullptr),
   fHistMCReconstructiblePiPlusPtHeavyPt(nullptr),
   fHistMCReconstructiblePiMinusPtHeavyPt(nullptr),
+  fHistoTrueMesonFlags(nullptr),
   fHistoTrueMotherPiPlPiMiNDMInvMassPt(nullptr),
   fHistoTrueMotherPiPlPiMiNDMInvMassPtSubNDM(nullptr),
   fHistoTrueMotherPiPlPiMiNDMInvMassPtFixedPzNDM(nullptr),
@@ -594,7 +595,6 @@ AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::AliAnalysisTaskNeutralMesonTo
   fVectorDoubleCountTrueHNMs(0),
   fVectorDoubleCountTrueConvGammas(0),
   fHistoNEvents(nullptr),
-  fHistoTrueMesonFlags(nullptr),
   fHistoNEventsWOWeight(nullptr),
   fProfileJetJetXSection(nullptr),
   fHistoJetJetNTrials(nullptr),
@@ -6512,14 +6512,14 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
 
   Float_t weighted= fWeightJetJetMC;
 
-  if (fDoMesonQA>0){fHistoTrueMesonFlags->Fill(1);} //All candidates
+  if (fDoMesonQA>0){fHistoTrueMesonFlags[fiCut]->Fill(1);} //All candidates
 
   if ( !(trueMesonFlag == 1 && NDMMCLabel != -1)){ //more understandable: (trueMesonFlag != 1 || NDMMCLabel == -1)
     if((fDoMesonQA>0 ) && (!fDoLightOutput)){
       //fHistoTruePiPlPiMiNDMContaminationInvMassPt[fiCut]->Fill(mesoncand->M(),mesoncand->Pt(),weighted);
       fHistoTruePiPlPiMiNDMContamination_Crosscheck_InvMassPt[fiCut]->Fill(mesoncand->M(),mesoncand->Pt(),weighted);
     }
-    if (fDoMesonQA>0){fHistoTrueMesonFlags->Fill(6);} //Wrongly identified pi0
+    if (fDoMesonQA>0){fHistoTrueMesonFlags[fiCut]->Fill(6);} //Wrongly identified pi0
     isPiZeroWronglyIdentified   = kTRUE;
     isContaminationMeson        = kTRUE;
     //return;
@@ -6538,7 +6538,7 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   Int_t negMotherLabelMC = negativeMC->GetMother();
 
   if ( (isPiZeroWronglyIdentified)&&((NDMMC->GetPdgCode()==fPDGCodeNDM)) ){
-    if (fDoMesonQA>0){fHistoTrueMesonFlags->Fill(10);} //Problem with pi0 flag
+    if (fDoMesonQA>0){fHistoTrueMesonFlags[fiCut]->Fill(10);} //Problem with pi0 flag
   }
   // Check case present
   if((TMath::Abs(negativeMC->GetPdgCode())==211) && (TMath::Abs(positiveMC->GetPdgCode())==211) && (NDMMC->GetPdgCode()==fPDGCodeNDM)){
@@ -6550,7 +6550,7 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
       if(virtualParticleMotherLabel==NDMMotherLabel){
         // all pions from same mother
         isSameMotherPiPlPiMiNDM  = kTRUE;
-        if (fDoMesonQA>0){fHistoTrueMesonFlags->Fill(2);} //Same mother
+        if (fDoMesonQA>0){fHistoTrueMesonFlags[fiCut]->Fill(2);} //Same mother
       } else{
         // only pi+ pi- from same mother -> Combinatorics
         isSameMotherPiPlPiMi = kTRUE;
@@ -6605,7 +6605,7 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
   if (isCombinatoricsMeson){iNumberOfDeclarationFlags++;}
   if (isContaminationMeson){iNumberOfDeclarationFlags++;}
   if (iNumberOfDeclarationFlags>1){
-      if (fDoMesonQA>0){fHistoTrueMesonFlags->Fill(11);} //Problem with meson declaration flag
+      if (fDoMesonQA>0){fHistoTrueMesonFlags[fiCut]->Fill(11);} //Problem with meson declaration flag
   }
 
   // Do things for each case
@@ -6705,7 +6705,7 @@ void AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson::ProcessTrueMesonCandidat
     //True Meson, but the analyzed one
     fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromDifferent[fiCut]->Fill(mesoncand->M(),mesoncand->Pt(),weighted);
     if((fDoMesonQA>0 ) && (!fDoLightOutput)){
-      Int DPGCodeEtaOrOmega=0;
+      Int_t DPGCodeEtaOrOmega=0;
       if (fSelectedHeavyNeutralMeson==0){
         //Case 0: Analyzed Meson is Eta; Histogram fills Omega
         DPGCodeEtaOrOmega=223; //Omega
