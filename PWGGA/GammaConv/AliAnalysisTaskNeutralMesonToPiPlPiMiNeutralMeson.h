@@ -340,9 +340,18 @@ class AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson: public AliAnalysisTaskS
     TH2F**                            fHistMCReconstructiblePiMinusPtHeavyPt;             //!<! array of histos of pt correlation piminus - reconstructible heavy meson
 
     // reconstructed particles MC validated
+    TH1F**                          fHistoTrueMesonFlags;                                 //!<! histo for event counting
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt;                 //!<! histos with reconstructed validated eta or omega, inv mass, pT
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPtSubNDM;           //!<! histos with reconstructed validated eta or omega, inv mass, pT fixed pi0 mass
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPtFixedPzNDM;       //!<! histos with reconstructed validated eta or omega, inv mass, pT fixed pi0 mass
+    // reconstructed particles MC validated different mesons
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromDifferent;   //!<! histos with all reconstructed validated mesons which are not analyzed (eta or omega), inv mass, pT
+    // reconstructed particles MC validated different mesons
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromEtaOmega;    //!<! histos with reconstructed validated eta or omega mesons from  which are not analyzed, inv mass, pT
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromRho;         //!<! histos with reconstructed validated rho mesons from  which are not analyzed, inv mass, pT
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromK0s;         //!<! histos with reconstructed validated K0s mesons from  which are not analyzed, inv mass, pT
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromK0l;         //!<! histos with reconstructed validated K0l mesons from  which are not analyzed, inv mass, pT
+    TH2F**                          fHistoTrueMotherPiPlPiMiNDMInvMassPt_FromEtaPrime;    //!<! histos with reconstructed validated EtaPrime mesons from  which are not analyzed, inv mass, pT
     //Dalitz All Pt
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMDalitzPlotPosFixedPzNDM;   //!<!
     TH2F**                          fHistoTrueMotherPiPlPiMiNDMDalitzPlotNegFixedPzNDM;   //!<!
@@ -395,6 +404,8 @@ class AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson: public AliAnalysisTaskS
     TH2F**                          fHistoTruePiPlPiZeroSameMotherFromRhoInvMassPt;       //!<! histos with reconstructed validated pi0 pi+  from rho0, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiZeroSameMotherFromK0lInvMassPt;       //!<! histos with reconstructed validated pi0 pi+  from K0l, invariant mass, pT
     TH2F**                          fHistoTruePiPlPiMiNDMPureCombinatoricalInvMassPt;     //!<! histos with reconstructed validated pi+pi-pi0 that are pure combinatorical (do not share a mother)
+    TH2F**                          fHistoTruePiPlPiMiNDMCombinatoricalInvMassPt;         //!<! histos with all reconstructed validated pi+pi-pi0 that are combinatorical
+
     TH2F**                          fHistoTruePiPlPiMiNDMContaminationInvMassPt;          //!<! histos with reconstructed pi0 that are not actually pions
     TH2F**                          fHistoTruePiPlPiMiNDMContamination_Pi0_InvMassPt;     //!<! histos with reconstructed pi+ that are not actually pions
     TH2F**                          fHistoTruePiPlPiMiNDMContamination_PiPl_InvMassPt;    //!<! histos with reconstructed pi- that are not actually pions
@@ -464,7 +475,7 @@ private:
     AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson( const AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson& ); // Not implemented
     AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson& operator=( const AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson& ); // Not implemented
 
-  ClassDef(AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson, 18);
+  ClassDef(AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson, 19);
 };
 
 #endif // AliAnalysisTaskNeutralMesonToPiPlPiMiNeutralMeson_H
